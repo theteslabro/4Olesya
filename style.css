@@ -1,0 +1,389 @@
+/* 
+   В ЭТОМ БЛОКЕ ЗАДАНЫ ОСНОВНЫЕ ЦВЕТА.
+*/
+:root {
+    --bg-color: #1e1316;        
+    --text-color: #fce8ee;      
+    --text-light: #fff;         
+    --acc-color: #ff6b8b;       
+    --glass-bg: rgba(255, 255, 255, 0.04); 
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --footer-grad: #12090b;     
+    --envelope-paper: #fff;
+    --envelope-text: #333;
+}
+
+body.light-theme {
+    --bg-color: #f0e6e8;        
+    --text-color: #5a464c;      
+    --acc-color: #e8849b;       
+    --glass-bg: rgba(255, 255, 255, 0.4); 
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --footer-grad: #e6dcdf;     
+    --envelope-paper: #fffcf9;
+    --envelope-text: #4a3b40;
+}
+
+/* ---------- СКАЗОЧНЫЙ КАСТОМНЫЙ СКРОЛЛБАР ---------- */
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-color); /* Фон под ползунком скрыт */
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--acc-color), #f7a3b6);
+    border-radius: 10px;
+    border: 3px solid var(--bg-color); /* Отступ, чтобы скроллбар не прилипал к краю */
+}
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #ff5277, var(--acc-color)); 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Twemoji Styles - Красивые эмодзи */
+img.emoji {
+    height: 1.1em;
+    width: 1.1em;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.15em;
+    pointer-events: none;
+    -webkit-user-drag: none; /* Запрещаем выделять картинки-эмодзи */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Montserrat', sans-serif; 
+    overflow-x: hidden; 
+    position: relative;
+    scroll-behavior: smooth;
+    transition: background-color 0.5s ease;
+}
+
+h1, h2, h3, .hero-title, .glass-title, .footer-title {
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.theme-toggle-btn {
+    position: fixed;
+    top: 20px;
+    right: 35px; /* Отодвинул из-за скроллбара */
+    z-index: 1000; 
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+}
+.theme-toggle-btn:hover {
+    transform: scale(1.1) rotate(15deg);
+}
+
+#particles-canvas {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; opacity: 0.8;
+}
+
+.glass-panel {
+    background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); 
+    border: 1px solid var(--glass-border); border-radius: 20px; padding: 2.5rem;
+    box-shadow: 0 8px 32px rgba(255, 107, 139, 0.1); transition: background 0.5s ease, border-color 0.5s ease;
+}
+.glass-title {
+    text-align: center; font-size: 3rem; margin-bottom: 2rem;
+    background: linear-gradient(45deg, #ff7da3 0%, #ffb6c1 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 2px 5px rgba(255, 107, 139, 0.15);
+}
+
+.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; padding: 2rem; }
+.hero-content { max-width: 800px; animation: fadeInDown 1.5s ease-out; }
+.hero-title { font-size: 4rem; margin-bottom: 1.5rem; line-height: 1.1; background: linear-gradient(45deg, #ff7da3 0%, #ffb6c1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-subtitle { font-size: 1.2rem; font-weight: 400; opacity: 0.8; line-height: 1.6; }
+.scroll-indicator { position: absolute; bottom: 2rem; display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0.6; animation: pulse 2s infinite; }
+.mouse { width: 20px; height: 30px; border: 2px solid var(--text-color); border-radius: 12px; position: relative; }
+.wheel { width: 4px; height: 6px; background: var(--acc-color); border-radius: 2px; position: absolute; top: 4px; left: 50%; transform: translateX(-50%); animation: scrollWheel 1.5s infinite; }
+
+.heart-section { min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 2rem; position: relative; z-index: 10; }
+.scroll-heart-container { perspective: 1000px; width: 100%; max-width: 600px; height: 400px; }
+.heart-wrapper { position: relative; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; }
+.heart-half { position: absolute; width: 250px; height: 250px; top: 50%; transform: translateY(-50%); transition: transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 1.5s ease; z-index: 2; filter: drop-shadow(0 4px 15px rgba(255, 107, 139, 0.3)); }
+.left-half { left: calc(50% - 250px); }  .right-half { right: calc(50% - 250px); }
+.heart-wrapper.open .left-half { transform: translate(-60%, -50%) rotateY(-70deg) scale(1.1); opacity: 0; }
+.heart-wrapper.open .right-half { transform: translate(60%, -50%) rotateY(70deg) scale(1.1); opacity: 0; }
+.heart-message { position: absolute; opacity: 0; transform: scale(0.8); transition: all 1.2s ease 0.4s; text-align: center; width: 90%; max-width: 500px; z-index: 1; }
+.heart-message h2 { font-size: 2.5rem; color: var(--acc-color); margin-bottom: 1rem; }
+.heart-message p { font-size: 1.1rem; line-height: 1.5; margin-bottom: 0.8rem; }
+.heart-wrapper.open .heart-message { opacity: 1; transform: scale(1); box-shadow: 0 8px 30px rgba(255, 107, 139, 0.2); }
+
+/* ---------- УЛУЧШЕННЫЙ ОГРОМНЫЙ КОНВЕРТ ---------- */
+.envelope-section { padding: 5rem 1rem; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 20; }
+
+.envelope-wrapper {
+    perspective: 1500px;
+    width: 600px;  /* Сделали его ОГРОМНЫМ на ПК */
+    height: 380px; 
+    position: relative;
+    margin-bottom: 8rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.envelope-wrapper:hover {
+    transform: translateY(-8px);
+}
+
+.envelope { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; }
+
+.envelope-back {
+    position: absolute; width: 100%; height: 100%;
+    background: var(--acc-color); border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3); z-index: 1;
+}
+
+/* Лицевая часть */
+.envelope-front {
+    position: absolute; width: 0; height: 0; z-index: 3;
+    border-left: 300px solid transparent; border-right: 300px solid transparent;
+    border-bottom: 230px solid rgba(0,0,0,0.1); 
+    border-radius: 0 0 10px 10px; bottom: 0;
+}
+.envelope-front::after {
+    content: ''; position: absolute;
+    left: -300px; bottom: -230px; width: 0; height: 0;
+    border-top: 190px solid transparent; border-bottom: 190px solid var(--acc-color);
+    border-left: 300px solid var(--acc-color); border-right: 300px solid var(--acc-color);
+    filter: brightness(0.9);
+}
+
+/* Откидная створка */
+.envelope-flap {
+    position: absolute; top: 0; left: 0; width: 0; height: 0;
+    border-left: 300px solid transparent; border-right: 300px solid transparent;
+    border-top: 230px solid var(--acc-color);
+    filter: brightness(1.1); z-index: 4;
+    transform-origin: top;
+    /* Закрывается с задержкой, чтобы письмо успело задвинуться */
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s;
+}
+
+.envelope-wax {
+    position: absolute; top: 200px; left: 50%; transform: translate(-50%, -50%);
+    width: 60px; height: 60px; background: #e74c3c; border-radius: 50%; z-index: 5;
+    display: flex; justify-content: center; align-items: center; font-size: 1.8rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+    transition: opacity 0.3s;
+}
+
+/* Само письмо */
+.envelope-paper {
+    position: absolute; top: 15px; left: 15px;
+    width: calc(100% - 30px);
+    background: var(--envelope-paper);
+    border-radius: 5px; padding: 3rem 2rem;
+    z-index: 2; 
+    /* Прячется внутрь СРАЗУ (без задержки), а крышка ждет */
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s;
+    transform: translateY(0); box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    height: 350px; overflow: hidden; color: var(--envelope-text);
+}
+
+.paper-content h3 { color: var(--acc-color); margin-bottom: 1.5rem; font-size: 2rem; font-family: 'Cormorant Garamond', serif; }
+.paper-content p { font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem; font-family: 'Montserrat', sans-serif; }
+
+/* ======== СОСТОЯНИЕ: ОТКРЫТО ======== */
+.envelope-wrapper.is-open .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1; 
+    /* Открывается СРАЗУ */
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s; 
+}
+.envelope-wrapper.is-open .envelope-wax { opacity: 0; }
+.envelope-wrapper.is-open .envelope-paper {
+    /* Выезжает вверх далеко, становится реально большим и читаемым */
+    transform: translateY(-240px); 
+    z-index: 4; 
+    height: 550px; 
+    overflow-y: auto; 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3); 
+    /* Вылетает с задержкой 0.5s - ЖДЕТ пока откроется крышка! */
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s; 
+}
+
+/* Подсказка под конвертом */
+.envelope-hint { text-align: center; margin-top: 1.5rem; font-size: 1.2rem; opacity: 0.7; animation: pulse 2s infinite; transition: opacity 0.5s; font-family: 'Cormorant Garamond', serif; }
+.envelope-wrapper.is-open .envelope-hint { opacity: 0; }
+
+/* ---------- МИЛЫЙ КОТИК ---------- */
+.cute-interlude { padding: 4rem 1rem; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10; }
+.kitten-panel { display: flex; flex-direction: column; align-items: center; max-width: 500px; gap: 1.5rem; text-align: center; padding: 2rem; }
+.kitten-img { width: 100%; max-width: 350px; border-radius: 15px; box-shadow: 0 10px 30px rgba(255, 107, 139, 0.2); transition: transform 0.3s; }
+.kitten-img:hover { transform: scale(1.05) rotate(2deg); }
+.kitten-panel p { font-size: 1.8rem; font-family: 'Cormorant Garamond', serif; font-weight: 600; color: var(--acc-color); line-height: 1.4; text-shadow: 0 2px 4px rgba(255, 107, 139, 0.1); }
+
+/* ---------- РОМАШКА ---------- */
+.daisy-section { padding: 3rem 1rem; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10; }
+.daisy-panel { display: flex; flex-direction: column; align-items: center; max-width: 500px; text-align: center; padding: 2.5rem; }
+.daisy-container { position: relative; width: 220px; height: 220px; margin: 1rem 0 3rem 0; }
+.daisy-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: #ffcc00; border-radius: 50%; z-index: 10; box-shadow: inset -5px -5px 15px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.1); }
+.petal { position: absolute; width: 30px; height: 100px; background: var(--text-light); left: calc(50% - 15px); bottom: 50%; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; transform-origin: bottom center; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.6s ease-out, opacity 0.6s ease-out; z-index: 5; }
+.petal:hover { filter: brightness(0.9); }
+
+.daisy-text-container { position: relative; min-height: 80px; display: flex; justify-content: center; align-items: center; width: 100%; border-top: 1px dashed var(--glass-border); padding-top: 1.5rem; }
+#daisy-result { font-size: 2rem; font-family: 'Cormorant Garamond', serif; font-weight: bold; color: var(--acc-color); text-shadow: 0 2px 5px rgba(255, 107, 139, 0.2); }
+.not-word { display: inline-block; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-style: italic; }
+.not-word.shattered { transform: translateY(-30px) rotate(-50deg) scale(0); opacity: 0; filter: blur(5px); }
+
+/* Анимация кулака */
+#fist-animation { position: absolute; font-size: 4.5rem; right: -50px; top: 50%; transform: translateY(-50%) translateX(100px) scale(0); opacity: 0; pointer-events: none; z-index: 20; transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+#fist-animation.fist-punch { transform: translateY(-50%) translateX(-140px) scale(1) rotate(-15deg); opacity: 1; }
+
+/* ---------- МИНИ-ИГРА (ПИНЬЯТА) ---------- */
+.pinata-section { padding: 3rem 1rem; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 10; }
+.pinata-panel { text-align: center; max-width: 600px; display: flex; flex-direction: column; align-items: center; padding: 2.5rem; }
+.pinata-hint { font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem; font-family: 'Montserrat', sans-serif; font-weight: 500; }
+.pinata-container { position: relative; width: 250px; height: 250px; display: flex; justify-content: center; align-items: center; margin-bottom: 1rem; }
+.love-pinata { font-size: 6rem; cursor: pointer; user-select: none; transition: transform 0.1s ease; filter: drop-shadow(0 0 20px rgba(255, 107, 139, 0.4)); z-index: 5; }
+.love-pinata.pop { transform: scale(0.8) !important; } /* Класс для эффекта нажатия из JS */
+.click-counter { position: absolute; top: -10px; font-size: 2.5rem; font-weight: 700; color: var(--acc-color); opacity: 0.9; }
+.pinata-result { font-size: 1.6rem; color: var(--acc-color); font-weight: 700; min-height: 40px; margin-top: 1rem; font-family: 'Cormorant Garamond', serif; }
+
+/* Летающие осколки-сердечки из мини-игры */
+.mini-heart {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-size: 2.5rem; pointer-events: none; z-index: 100;
+}
+@keyframes explodeHeart {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(var(--rot)); opacity: 0; }
+}
+
+
+/* ---------- MUSIC ---------- */
+.music-section { padding: 4rem 1rem; max-width: 900px; margin: 0 auto; }
+.spotify-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
+.spotify-grid iframe { box-shadow: 0 8px 25px rgba(255, 107, 139, 0.1); transition: transform 0.3s; }
+.spotify-grid iframe:hover { transform: translateY(-5px); }
+
+/* ---------- REASONS ---------- */
+.reasons-section { padding: 4rem 1rem; max-width: 1000px; margin: 0 auto; }
+.cards-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; }
+.reason-card { height: 280px; perspective: 1000px; cursor: pointer; }
+.card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform-style: preserve-3d; }
+.reason-card.flipped .card-inner { transform: rotateY(180deg); }
+.card-front, .card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 20px; display: flex; justify-content: center; align-items: center; padding: 2rem; background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); }
+.card-front { color: var(--text-color); font-weight: 600; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+.card-front span { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--acc-color); text-shadow: 0 2px 5px rgba(255,107,139,0.2); }
+.card-back { background: rgba(255, 107, 139, 0.1); transform: rotateY(180deg); font-weight: 500; font-size: 1.1rem; line-height: 1.6; box-shadow: 0 0 20px rgba(255, 107, 139, 0.1) inset; }
+
+/* ---------- FOOTER HUG ---------- */
+.hugging-footer { padding: 6rem 1rem 4rem; text-align: center; overflow: hidden; position: relative; background: linear-gradient(180deg, transparent 0%, var(--footer-grad) 100%); }
+.footer-title { font-size: 2.8rem; margin-bottom: 4rem; background: linear-gradient(45deg, #ff7da3 0%, #ffb6c1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hug-scene { position: relative; height: 200px; width: 100%; max-width: 350px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-end; }
+.character { width: 60px; height: 160px; position: relative; transition: transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.char-head { width: 45px; height: 45px; background: #ffdbdb; border-radius: 50%; position: absolute; top: 0; left: 7px; box-shadow: inset -5px -5px 15px rgba(0,0,0,0.05); }
+.diff-head { background: #ffe3ca; }
+.char-body { width: 55px; height: 80px; background: #fff; border-radius: 20px; position: absolute; top: 50px; left: 2px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.diff-body { background: #ffb6c1; }
+.char-arm-l, .char-arm-r { width: 16px; height: 60px; background: #fdfdfd; position: absolute; top: 55px; border-radius: 12px; transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s; transform-origin: top center; }
+.char-left .char-arm-r { left: 40px; transform: rotate(-15deg); }
+.char-right .char-arm-l { right: 40px; transform: rotate(15deg); background: #ffa8b6; }
+.char-left { transform: translateX(-40px); }
+.char-right { transform: translateX(40px); }
+.hug-scene.hugging .char-left { transform: translateX(95px); }
+.hug-scene.hugging .char-right { transform: translateX(-95px); }
+.hug-scene.hugging .char-left .char-arm-r { transform: rotate(-65deg) translateY(10px) translateX(-5px); z-index: 5; height: 75px; }
+.hug-scene.hugging .char-right .char-arm-l { transform: rotate(65deg) translateY(10px) translateX(5px); z-index: 4; height: 75px; }
+.heart-burst { position: absolute; top: -30px; left: 50%; transform: translateX(-50%) scale(0); font-size: 3.5rem; opacity: 0; transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.5s; filter: drop-shadow(0 4px 15px rgba(255, 107, 139, 0.5)); }
+.hug-scene.hugging .heart-burst { transform: translateX(-50%) scale(1.5); opacity: 1; animation: floatHeart 2s infinite ease-in-out 2s; }
+.final-words { margin-top: 3rem; font-size: 1.8rem; opacity: 0; transition: opacity 1.5s ease 2.5s; font-family: 'Montserrat', sans-serif; font-weight: 500; letter-spacing: 2px; }
+.hug-scene.hugging ~ .final-words { opacity: 1; }
+
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+@keyframes scrollWheel { 0% { top: 4px; opacity: 1; } 100% { top: 20px; opacity: 0; } }
+@keyframes floatHeart { 0% { transform: translateX(-50%) scale(1.5) translateY(0); } 50% { transform: translateX(-50%) scale(1.6) translateY(-15px); } 100% { transform: translateX(-50%) scale(1.5) translateY(0); } }
+
+/* ---------- МОБИЛЬНАЯ ВЕРСИЯ (ПОЛНАЯ ОПТИМИЗАЦИЯ ДЛЯ ТЕЛЕФОНА) ---------- */
+@media (max-width: 768px) {
+    .theme-toggle-btn { top: 15px; right: 15px; width: 45px; height: 45px; font-size: 1.2rem; }
+    .hero-title { font-size: 2.5rem; margin-bottom: 1rem; }
+    .hero-subtitle { font-size: 1rem; }
+    .glass-title { font-size: 2.2rem; margin-bottom: 2rem; }
+    .glass-panel { padding: 1.5rem; }
+    
+    .heart-section { min-height: 60vh; padding: 2rem 1rem; }
+    .scroll-heart-container { height: 260px; }
+    .left-half, .right-half { width: 140px; height: 140px; }
+    .left-half { left: calc(50% - 140px); }  .right-half { right: calc(50% - 140px); }
+    .heart-wrapper.open .left-half { transform: translate(-40%, -50%) rotateY(-70deg) scale(0.9); }
+    .heart-wrapper.open .right-half { transform: translate(40%, -50%) rotateY(70deg) scale(0.9); }
+    .heart-message h2 { font-size: 2rem; }
+    .heart-message p { font-size: 0.95rem; line-height: 1.5; }
+    
+    /* МАСШТАБИРОВАНИЕ ОГРОМНОГО КОНВЕРТА ПОД ЭКРАН ТЕЛЕФОНА */
+    .envelope-section { padding: 3rem 1rem; }
+    .envelope-wrapper { width: 340px; height: 210px; margin-bottom: 5rem; }
+    .envelope-front { border-left: 170px solid transparent; border-right: 170px solid transparent; border-bottom: 130px solid rgba(0,0,0,0.1); }
+    .envelope-front::after { left: -170px; bottom: -130px; border-top: 110px solid transparent; border-bottom: 110px solid var(--acc-color); border-left: 170px solid var(--acc-color); border-right: 170px solid var(--acc-color); }
+    .envelope-flap { border-left: 170px solid transparent; border-right: 170px solid transparent; border-top: 140px solid var(--acc-color); }
+    .envelope-wax { top: 120px; width: 45px; height: 45px; font-size: 1.2rem; }
+    
+    .envelope-paper { padding: 1.5rem 1rem; height: 190px; }
+    .paper-content h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+    .paper-content p { font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.8rem; }
+    
+    .envelope-wrapper.is-open .envelope-paper {
+        transform: translateY(-110px);
+        height: 400px;
+    }
+    .envelope-hint { font-size: 1.1rem; }
+
+    /* Котик, Ромашка и пиньята */
+    .cute-interlude { padding: 2rem 1rem; }
+    .kitten-img { max-width: 280px; }
+    .kitten-panel p { font-size: 1.5rem; }
+    
+    .daisy-section { padding: 2rem 1rem; }
+    .daisy-panel { padding: 1.5rem; }
+    .daisy-container { width: 180px; height: 180px; }
+    .petal { width: 24px; height: 80px; left: calc(50% - 12px); }
+    #daisy-result { font-size: 1.6rem; }
+    #fist-animation { right: -30px; font-size: 3.5rem; }
+    #fist-animation.fist-punch { transform: translateY(-50%) translateX(-100px) scale(1) rotate(-15deg); }
+    
+    .pinata-section { padding: 2rem 1rem; }
+    .pinata-panel { padding: 1.5rem; }
+    .pinata-hint { font-size: 0.95rem; }
+    .love-pinata { font-size: 5rem; }
+    .pinata-container { width: 200px; height: 200px; }
+    .click-counter { font-size: 2rem; }
+    .pinata-result { font-size: 1.3rem; }
+
+    /* Музыка и причины */
+    .music-section { padding: 2rem 1rem; }
+    .reasons-section { padding: 2rem 1rem; }
+    .cards-container { grid-template-columns: 1fr; gap: 1.5rem; }
+    .reason-card { height: 220px; }
+    .card-front span { font-size: 2rem; }
+    .card-back { font-size: 1rem; }
+    
+    /* Футер */
+    .hugging-footer { padding: 4rem 1rem 3rem; }
+    .footer-title { margin-bottom: 3rem; font-size: 2.2rem; }
+    .hug-scene { transform: scale(0.85); }
+    .final-words { font-size: 1.5rem; }
+}
