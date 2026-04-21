@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>1 Месяц С Тобой ❤️</title>
+    <!-- Подключаем наш файл со стилями -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключаем красивые шрифты от Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Переключатель темы (Темная / Светлая) -->
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Переключить тему">
+        ☀️
+    </button>
+
+    <!-- Холст для рисования летающих сердечек на фоне -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- 1. Главный экран (Hero Section) -->
+    <section class="hero">
+        <div class="hero-content glass-panel" aria-label="Hero content">
+            <h1 class="hero-title slide-up">С первым месяцем, любимая!</h1>
+            <p class="hero-subtitle fade-in">Мы прошли этот месяц рука об руку, и я влюбляюсь всё сильнее...</p>
+        </div>
+        <!-- Индикатор скролла -->
+        <div class="scroll-indicator">
+            <span>Прокрути вниз</span>
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Секция с раскрывающимся сердцем -->
+    <section class="heart-section" id="heart-sec">
+        <div class="scroll-heart-container">
+            <div class="heart-wrapper" id="unfolding-heart">
+                <div class="heart-half left-half">
+                    <svg viewBox="0 0 100 100">
+                        <path d="M 50 90 L 48 88 C 20 63 0 45 0 26 C 0 11 12 0 28 0 C 38 0 45 5 50 14 Z" fill="#ff7da3">
+                        </path>
+                    </svg>
+                </div>
+                <div class="heart-half right-half">
+                    <svg viewBox="0 0 100 100">
+                        <path d="M 50 90 L 52 88 C 80 63 100 45 100 26 C 100 11 88 0 72 0 C 62 0 55 5 50 14 Z"
+                            fill="#ff7da3"></path>
+                    </svg>
+                </div>
+
+                <div class="heart-message glass-panel">
+                    <h2>Моей Любви</h2>
+                    <p>Этот первый месяц - как яркая вспышка среди обычных дней.</p>
+                    <p>С тобой я чувствую себя на своём месте. Твой голос лечит любые тревоги.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2.5 НОВЫЙ БЛОК: ИНТЕРАКТИВНЫЙ ОГРОМНЫЙ КОНВЕРТ -->
+    <section class="envelope-section">
+        <h2 class="section-title glass-title" style="margin-bottom: 2rem;">Особенное послание</h2>
+
+        <div class="envelope-wrapper" id="envelope-wrapper">
+            <div class="envelope" id="love-envelope">
+                <div class="envelope-flap"></div>
+                <!-- Задний карман конверта -->
+                <div class="envelope-back"></div>
+
+                <!-- Само письмо -->
+                <div class="envelope-paper">
+                    <div class="paper-content">
+                        <h3>Котенок мой... 💌</h3>
+                        <p>Каждое мгновение проведенное с тобой — это чудо. Я никогда не думал, что можно испытывать
+                            такие сильные и теплые чувства. Ты забрала мое сердце навсегда!</p>
+                        <p>Спасибо за твой очаровательный смех, за уютные разговоры ночью. Я готов открывать с
+                            тобой этот мир снова и снова.</p>
+                        <p>Люблю тебя невероятно сильно! Ты моя самая большая драгоценность. И это письмо - лишь
+                            крошечная часть того, что я чувствую к тебе. ❤️</p>
+                    </div>
+                </div>
+
+                <!-- Лицевые створки конверта -->
+                <div class="envelope-front"></div>
+                <div class="envelope-wax">❤️</div>
+            </div>
+            <p class="envelope-hint">Коснись, чтобы распечатать</p>
+        </div>
+    </section>
+
+    <!-- МИЛАЯ ВСТАВКА С КОТИКОМ -->
+    <section class="cute-interlude text-center">
+        <h2 class="glass-title">Кстати...</h2>
+        <div class="glass-panel kitten-panel">
+            <img src="kitten.png" alt="Милый пушистый котенок" class="kitten-img">
+            <p>Ты даже красивее, чем этот котик 🥺💕</p>
+        </div>
+    </section>
+
+    <!-- РОМАШКА ЛЮБВИ -->
+    <section class="daisy-section">
+        <h2 class="section-title glass-title">Любит или не любит?</h2>
+        <div class="glass-panel daisy-panel">
+            <p class="pinata-hint">Отрывай лепестки по одному!</p>
+            
+            <div class="daisy-container" id="daisy-container">
+                <div class="daisy-center"></div>
+                <!-- Лепестки рисует JavaScript -->
+            </div>
+            
+            <div class="daisy-text-container">
+                <div id="daisy-result">Ромашка ждет...</div>
+                <!-- Кулак -->
+                <div id="fist-animation" class="fist-idle">👊</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ИНТЕРАКТИВНАЯ МИНИ-ИГРА -->
+    <section class="pinata-section">
+        <h2 class="section-title glass-title">Измерь мою любовь!</h2>
+        <div class="glass-panel pinata-panel">
+            <p class="pinata-hint">Кликай (или тапай) по этому сердечку так быстро, как только можешь, чтобы надуть его
+                и узнать секрет!</p>
+            <div class="pinata-container" id="pinata-container">
+                <div id="love-pinata" class="love-pinata">💖</div>
+                <div class="click-counter" id="pinata-counter">0%</div>
+            </div>
+            <p id="pinata-result" class="pinata-result"></p>
+        </div>
+    </section>
+
+    <!-- 3. Секция с любимыми треками (Spotify) -->
+    <section class="music-section">
+        <h2 class="section-title glass-title">Наши любимые треки</h2>
+        <div class="spotify-grid">
+            <iframe data-testid="embed-iframe" style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/7i3YzuFAdlbETXLUed8uHi?utm_source=generator&theme=0"
+                width="100%" height="152" frameBorder="0" allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+            <iframe data-testid="embed-iframe" style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/5NUtEdTQgEZRVdsuh5eNL6?utm_source=generator&theme=0"
+                width="100%" height="152" frameBorder="0" allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- 4. Секция "Почему я люблю тебя" (Карточки) -->
+    <section class="reasons-section">
+        <h2 class="section-title glass-title">Почему я тебя люблю</h2>
+        <div class="cards-container">
+            <div class="reason-card">
+                <div class="card-inner">
+                    <div class="card-front"><span>Причина 1</span></div>
+                    <div class="card-back">
+                        <p>За твой потрясающий смех, который согревает мне душу</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reason-card">
+                <div class="card-inner">
+                    <div class="card-front"><span>Причина 2</span></div>
+                    <div class="card-back">
+                        <p>За то, какими теплыми становятся вечера рядом с тобой</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reason-card">
+                <div class="card-inner">
+                    <div class="card-front"><span>Причина 3</span></div>
+                    <div class="card-back">
+                        <p>За твою поддержку во всём и нежность</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reason-card">
+                <div class="card-inner">
+                    <div class="card-front"><span>Причина 4</span></div>
+                    <div class="card-back">
+                        <p>Просто за то, что ты есть на этом свете</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reason-card">
+                <div class="card-inner">
+                    <div class="card-front"><span>Причина 5</span></div>
+                    <div class="card-back">
+                        <p>За то, как с тобой я хочу становиться только лучше</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reason-card">
+                <div class="card-inner">
+                    <div class="card-front"><span>Причина 6</span></div>
+                    <div class="card-back">
+                        <p>Потому что ты только моя Миса Амане</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Финал: Обнимашки -->
+    <section class="hugging-footer">
+        <h2 class="footer-title">И это только начало...</h2>
+
+        <div class="hug-scene" id="hug-scene">
+            <div class="character char-left">
+                <div class="char-head"></div>
+                <div class="char-body"></div>
+                <!-- Ручки -->
+                <div class="char-arm-l"></div>
+                <div class="char-arm-r"></div>
+            </div>
+
+            <div class="heart-burst" id="heart-burst">❤️</div>
+
+            <div class="character char-right">
+                <div class="char-head diff-head"></div>
+                <div class="char-body diff-body"></div>
+                <!-- Ручки -->
+                <div class="char-arm-l"></div>
+                <div class="char-arm-r"></div>
+            </div>
+        </div>
+
+        <p class="final-words">Люблю тебя котик!</p>
+    </section>
+
+    <!-- Подключение библиотеки красивых эмодзи (Twemoji) -->
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
