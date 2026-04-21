@@ -105,6 +105,25 @@
         </div>
     </section>
 
+    <!-- РОМАШКА ЛЮБВИ -->
+    <section class="daisy-section">
+        <h2 class="section-title glass-title">Любит или не любит?</h2>
+        <div class="glass-panel daisy-panel">
+            <p class="pinata-hint">Отрывай лепестки по одному!</p>
+            
+            <div class="daisy-container" id="daisy-container">
+                <div class="daisy-center"></div>
+                <!-- Лепестки рисует JavaScript -->
+            </div>
+            
+            <div class="daisy-text-container">
+                <div id="daisy-result">Ромашка ждет...</div>
+                <!-- Кулак -->
+                <div id="fist-animation" class="fist-idle">👊</div>
+            </div>
+        </div>
+    </section>
+
     <!-- ИНТЕРАКТИВНАЯ МИНИ-ИГРА -->
     <section class="pinata-section">
         <h2 class="section-title glass-title">Измерь мою любовь!</h2>
@@ -123,7 +142,11 @@
     <section class="music-section">
         <h2 class="section-title glass-title">Наши любимые треки</h2>
         <div class="spotify-grid">
-           <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/4BY4V1T0RJK1HmD2Q0ClyK?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe data-testid="embed-iframe" style="border-radius:12px"
+                src="https://open.spotify.com/embed/track/7i3YzuFAdlbETXLUed8uHi?utm_source=generator&theme=0"
+                width="100%" height="152" frameBorder="0" allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
             <iframe data-testid="embed-iframe" style="border-radius:12px"
                 src="https://open.spotify.com/embed/track/5NUtEdTQgEZRVdsuh5eNL6?utm_source=generator&theme=0"
                 width="100%" height="152" frameBorder="0" allowfullscreen=""
@@ -214,6 +237,8 @@
         <p class="final-words">Люблю тебя котик!</p>
     </section>
 
+    <!-- Подключение библиотеки красивых эмодзи (Twemoji) -->
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 
